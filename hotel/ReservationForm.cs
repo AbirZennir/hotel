@@ -88,7 +88,7 @@ namespace hotel
                 int roomId = Convert.ToInt32(comboBox_roomId.SelectedValue);
                 DateTime dIn = dateTimePicker_dateIn.Value;
                 DateTime dOut = dateTimePicker_dateOut.Value;
-                decimal totalAmount = decimal.Parse(textBox_total.Text); 
+                decimal totalAmount = 0; // À calculer selon vos besoins
                 int roomTypeId = Convert.ToInt32(comboBox_roomType.SelectedValue);
 
                 // Validation des dates
