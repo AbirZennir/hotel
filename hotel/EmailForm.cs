@@ -8,11 +8,9 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MailKit.Net.Smtp;
-using MailKit.Security;
-using MimeKit;
-using SmtpClient = MailKit.Net.Smtp.SmtpClient;
-
+using System.Net;
+using System.IO;
+using System.Web;
 
 namespace hotel
 {
@@ -32,46 +30,57 @@ namespace hotel
         {
             try
             {
-                // Créer un nouveau message
-                var message = new MimeMessage();
-                message.From.Add(new MailboxAddress("Nom d'affichage", textBox_from.Text));
-                message.To.Add(new MailboxAddress("Destinataire", textBox_to.Text));
-                message.Subject = textBox_subject.Text;
-                message.Body = new TextPart("plain") { Text = richTextBox_content.Text };
-
-                using (var client = new SmtpClient())
+                // Créez un nouvel e-mail
+                MailMessage mail = new MailMessage
                 {
-                    await client.ConnectAsync("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+                    Subject = textBox_subject.Text,
+                    Body = richTextBox_content.Text,
+                    IsBodyHtml = false
+                };
 
-                    // Utilisez le mot de passe d'application ici
-                    await client.AuthenticateAsync(textBox_from.Text, "votre_mot_de_passe_d_application");
+                // Exemple d'adresse e-mail de l'expéditeur
+                string expéditeur = "rounalisa@gmail.com"; // Remplacez par votre adresse e-mail
+                mail.From = new MailAddress(expéditeur); // Utilisez l'adresse de l'expéditeur
 
-                    await client.SendAsync(message);
+                mail.To.Add(textBox_to.Text); // Ajoutez le destinataire
+
+                // Configurez le client SMTP
+                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                {
+                    smtp.EnableSsl = true; // Activez SSL
+                    smtp.Credentials = new NetworkCredential(expéditeur, "lxkp ugrm cjfv liep"); // Utilisez le mot de passe d'application
+
+                    // Envoyez l'e-mail
+                    await smtp.SendMailAsync(mail);
+                    MessageBox.Show("Email envoyé avec succès !");
                 }
-
-                MessageBox.Show("Email has been sent successfully.");
-            }
-            catch (FormatException ex)
-            {
-                MessageBox.Show("Invalid email format: " + ex.Message);
             }
             catch (SmtpException ex)
             {
-                MessageBox.Show("SMTP error: " + ex.Message);
+                MessageBox.Show($"Erreur SMTP : {ex.Message}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred: " + ex.Message);
+                MessageBox.Show($"Une erreur est survenue : {ex.Message}");
             }
+
+
+
+
         }
 
-        
-    
+
+
 
 
         private void label_exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+
+        }
+
+        private void label_address_Click(object sender, EventArgs e)
+        {
 
         }
     }

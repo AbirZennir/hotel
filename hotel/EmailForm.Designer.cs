@@ -38,13 +38,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.label_email = new System.Windows.Forms.Label();
-            this.label_e_pass = new System.Windows.Forms.Label();
             this.label_address = new System.Windows.Forms.Label();
             this.label_subject = new System.Windows.Forms.Label();
             this.label_content = new System.Windows.Forms.Label();
-            this.textBox_from = new System.Windows.Forms.TextBox();
-            this.textBox_pass = new System.Windows.Forms.TextBox();
             this.textBox_subject = new System.Windows.Forms.TextBox();
             this.richTextBox_content = new System.Windows.Forms.RichTextBox();
             this.textBox_to = new System.Windows.Forms.TextBox();
@@ -158,27 +154,6 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label_email
-            // 
-            this.label_email.AutoSize = true;
-            this.label_email.Location = new System.Drawing.Point(284, 185);
-            this.label_email.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label_email.Name = "label_email";
-            this.label_email.Size = new System.Drawing.Size(131, 26);
-            this.label_email.TabIndex = 19;
-            this.label_email.Text = "From Email";
-            // 
-            // label_e_pass
-            // 
-            this.label_e_pass.AutoSize = true;
-            this.label_e_pass.Location = new System.Drawing.Point(718, 185);
-            this.label_e_pass.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label_e_pass.Name = "label_e_pass";
-            this.label_e_pass.Size = new System.Drawing.Size(122, 26);
-            this.label_e_pass.TabIndex = 20;
-            this.label_e_pass.Text = "password";
-            this.label_e_pass.Click += new System.EventHandler(this.label_e_pass_Click);
-            // 
             // label_address
             // 
             this.label_address.AutoSize = true;
@@ -188,6 +163,7 @@
             this.label_address.Size = new System.Drawing.Size(193, 26);
             this.label_address.TabIndex = 21;
             this.label_address.Text = "To email address";
+            this.label_address.Click += new System.EventHandler(this.label_address_Click);
             // 
             // label_subject
             // 
@@ -209,22 +185,6 @@
             this.label_content.TabIndex = 23;
             this.label_content.Text = "content";
             // 
-            // textBox_from
-            // 
-            this.textBox_from.Font = new System.Drawing.Font("Microsoft JhengHei", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_from.Location = new System.Drawing.Point(444, 182);
-            this.textBox_from.Name = "textBox_from";
-            this.textBox_from.Size = new System.Drawing.Size(169, 34);
-            this.textBox_from.TabIndex = 24;
-            // 
-            // textBox_pass
-            // 
-            this.textBox_pass.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_pass.Location = new System.Drawing.Point(860, 182);
-            this.textBox_pass.Name = "textBox_pass";
-            this.textBox_pass.Size = new System.Drawing.Size(169, 34);
-            this.textBox_pass.TabIndex = 25;
-            // 
             // textBox_subject
             // 
             this.textBox_subject.Location = new System.Drawing.Point(430, 290);
@@ -243,7 +203,7 @@
             // textBox_to
             // 
             this.textBox_to.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_to.Location = new System.Drawing.Point(509, 241);
+            this.textBox_to.Location = new System.Drawing.Point(532, 242);
             this.textBox_to.Name = "textBox_to";
             this.textBox_to.Size = new System.Drawing.Size(169, 34);
             this.textBox_to.TabIndex = 67;
@@ -257,13 +217,9 @@
             this.Controls.Add(this.textBox_to);
             this.Controls.Add(this.richTextBox_content);
             this.Controls.Add(this.textBox_subject);
-            this.Controls.Add(this.textBox_pass);
-            this.Controls.Add(this.textBox_from);
             this.Controls.Add(this.label_content);
             this.Controls.Add(this.label_subject);
             this.Controls.Add(this.label_address);
-            this.Controls.Add(this.label_e_pass);
-            this.Controls.Add(this.label_email);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -293,14 +249,10 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label_email;
-        private System.Windows.Forms.Label label_e_pass;
         private System.Windows.Forms.Label label_address;
         private System.Windows.Forms.Label label_subject;
         private System.Windows.Forms.Label label_content;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox_from;
-        private System.Windows.Forms.TextBox textBox_pass;
         private System.Windows.Forms.TextBox textBox_subject;
         private System.Windows.Forms.RichTextBox richTextBox_content;
         private System.Windows.Forms.TextBox textBox_to;
