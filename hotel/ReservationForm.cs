@@ -115,11 +115,11 @@ namespace hotel
                     {
                         MessageBox.Show("Réservation ajoutée avec succès", 
                             "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        getReservTable();
-                        ClearFields();
-                    }
-                    else
-                    {
+                    getReservTable();
+                    ClearFields();
+                }
+                else
+                {
                         MessageBox.Show("Impossible d'ajouter la réservation. Veuillez vérifier les informations.", 
                             "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -144,7 +144,7 @@ namespace hotel
             dateTimePicker_dateOut.Value = DateTime.Now;
             if (comboBox_roomType.Items.Count > 0)
                 comboBox_roomType.SelectedIndex = 0;
-        }
+            }
 
 
         private void button_clean_Click(object sender, EventArgs e)
@@ -279,7 +279,7 @@ namespace hotel
                 comboBox_roomId.ValueMember = "RoomId";
             }
             catch (Exception)
-            {
+            { 
 
             }
         }
