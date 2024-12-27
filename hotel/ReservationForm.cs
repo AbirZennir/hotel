@@ -377,6 +377,11 @@ namespace hotel
             }
 
         }
+
+        private void comboBox_roomId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     }
 

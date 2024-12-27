@@ -43,7 +43,7 @@
             this.label_content = new System.Windows.Forms.Label();
             this.textBox_subject = new System.Windows.Forms.TextBox();
             this.richTextBox_content = new System.Windows.Forms.RichTextBox();
-            this.textBox_to = new System.Windows.Forms.TextBox();
+            this.comboBox_email = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -200,13 +200,14 @@
             this.richTextBox_content.TabIndex = 66;
             this.richTextBox_content.Text = "";
             // 
-            // textBox_to
+            // comboBox_email
             // 
-            this.textBox_to.Font = new System.Drawing.Font("Microsoft YaHei", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_to.Location = new System.Drawing.Point(532, 242);
-            this.textBox_to.Name = "textBox_to";
-            this.textBox_to.Size = new System.Drawing.Size(169, 34);
-            this.textBox_to.TabIndex = 67;
+            this.comboBox_email.FormattingEnabled = true;
+            this.comboBox_email.Location = new System.Drawing.Point(558, 241);
+            this.comboBox_email.Name = "comboBox_email";
+            this.comboBox_email.Size = new System.Drawing.Size(375, 34);
+            this.comboBox_email.TabIndex = 68;
+            this.comboBox_email.SelectedIndexChanged += new System.EventHandler(this.comboBox_email_SelectedIndexChanged);
             // 
             // EmailForm
             // 
@@ -214,7 +215,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(1098, 680);
-            this.Controls.Add(this.textBox_to);
+            this.Controls.Add(this.comboBox_email);
             this.Controls.Add(this.richTextBox_content);
             this.Controls.Add(this.textBox_subject);
             this.Controls.Add(this.label_content);
@@ -228,6 +229,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "EmailForm";
             this.Text = "EmailForm";
+            this.Load += new System.EventHandler(this.EmailForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -255,6 +257,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox_subject;
         private System.Windows.Forms.RichTextBox richTextBox_content;
-        private System.Windows.Forms.TextBox textBox_to;
+        private System.Windows.Forms.ComboBox comboBox_email;
     }
 }

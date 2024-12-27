@@ -16,6 +16,7 @@ namespace hotel
 {
     public partial class EmailForm : Form
     {
+        GuestClass guest = new GuestClass();
         public EmailForm()
         {
             InitializeComponent();
@@ -42,7 +43,7 @@ namespace hotel
                 string expéditeur = "rounalisa@gmail.com"; // Remplacez par votre adresse e-mail
                 mail.From = new MailAddress(expéditeur); // Utilisez l'adresse de l'expéditeur
 
-                mail.To.Add(textBox_to.Text); // Ajoutez le destinataire
+                mail.To.Add(comboBox_email.Text); // Ajoutez le destinataire
 
                 // Configurez le client SMTP
                 using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
@@ -83,5 +84,64 @@ namespace hotel
         {
 
         }
-    }
-}
+
+        private void comboBox_email_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Obtenir tous les emails et les afficher dans la ComboBox
+                DataTable emailsTable = guest.getAllGuestEmails(); // Appeler la méthode backend
+
+                if (emailsTable.Rows.Count > 0)
+                {
+                    // Lier les données à la ComboBox
+                    comboBox_email.DataSource = emailsTable;
+
+                    // Afficher les emails dans la ComboBox
+                    comboBox_email.DisplayMember = "GuestEmail";  // Nom de la colonne dans le DataTable
+                    comboBox_email.ValueMember = "GuestEmail";    // Utiliser l'email comme valeur de la ComboBox
+
+                    // Vous pouvez utiliser l'email comme valeur
+                }
+                else
+                {
+                    MessageBox.Show("Aucun email trouvé dans la base de données.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur s'est produite : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
+        private void EmailForm_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                // Obtenir tous les emails et les afficher dans la ComboBox
+                DataTable emailsTable = guest.getAllGuestEmails(); // Appeler la méthode backend
+
+                if (emailsTable.Rows.Count > 0)
+                {
+                    // Lier les données à la ComboBox pour afficher les emails
+                    comboBox_email.DataSource = emailsTable;
+                    comboBox_email.DisplayMember = "GuestEmail";  // Afficher les emails dans la ComboBox
+                    comboBox_email.ValueMember = "GuestEmail";    // Utiliser l'email comme valeur
+
+                    // Optionnel : si vous voulez afficher aussi le nom et prénom dans la ComboBox, vous pouvez concaténer
+                    // comboBox_email.DisplayMember = "FullName";  // Par exemple, si vous avez créé une colonne "FullName"
+                }
+                else
+                {
+                    MessageBox.Show("Aucun email trouvé dans la base de données.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Une erreur s'est produite : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        } } }        
+    
+

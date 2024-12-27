@@ -433,6 +433,7 @@
             this.comboBox_roomId.Name = "comboBox_roomId";
             this.comboBox_roomId.Size = new System.Drawing.Size(197, 32);
             this.comboBox_roomId.TabIndex = 58;
+            this.comboBox_roomId.SelectedIndexChanged += new System.EventHandler(this.comboBox_roomId_SelectedIndexChanged);
             // 
             // label6
             // 

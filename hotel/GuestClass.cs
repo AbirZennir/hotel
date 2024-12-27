@@ -9,6 +9,27 @@ namespace hotel
     {
         DBConnect connect = new DBConnect();
 
+        public DataTable getAllGuestEmails()
+        {
+            // Requête SQL pour récupérer tous les emails des invités
+            string selectQuery = "SELECT DISTINCT GuestEmail FROM [Clients] WHERE GuestEmail IS NOT NULL";
+
+            // Préparer la commande SQL
+            SqlCommand command = new SqlCommand(selectQuery, connect.GetConnection());
+
+            // Adapter pour remplir les données
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+
+            // Retourner les emails sous forme de DataTable
+            return table;
+        }
+
+
+
+
+
         // Insérer un nouveau client
         public bool InsertGuest(string id, string fname, string lname, string phone, string city, string email)
         {
