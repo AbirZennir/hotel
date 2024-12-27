@@ -44,6 +44,8 @@
             this.textBox_subject = new System.Windows.Forms.TextBox();
             this.richTextBox_content = new System.Windows.Forms.RichTextBox();
             this.comboBox_email = new System.Windows.Forms.ComboBox();
+            this.button_dashbord = new System.Windows.Forms.Button();
+            this.button_clean = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -53,6 +55,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button_dashbord);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -132,6 +135,7 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.button_clean);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(190, 545);
             this.panel4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -142,12 +146,13 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.Desktop;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
             this.button1.Font = new System.Drawing.Font("Showcard Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Location = new System.Drawing.Point(218, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 135);
+            this.button1.Size = new System.Drawing.Size(207, 135);
             this.button1.TabIndex = 0;
             this.button1.Text = "send";
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -209,6 +214,40 @@
             this.comboBox_email.TabIndex = 68;
             this.comboBox_email.SelectedIndexChanged += new System.EventHandler(this.comboBox_email_SelectedIndexChanged);
             // 
+            // button_dashbord
+            // 
+            this.button_dashbord.BackColor = System.Drawing.SystemColors.Desktop;
+            this.button_dashbord.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button_dashbord.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button_dashbord.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_dashbord.ForeColor = System.Drawing.SystemColors.Info;
+            this.button_dashbord.Image = ((System.Drawing.Image)(resources.GetObject("button_dashbord.Image")));
+            this.button_dashbord.Location = new System.Drawing.Point(0, 130);
+            this.button_dashbord.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.button_dashbord.Name = "button_dashbord";
+            this.button_dashbord.Size = new System.Drawing.Size(190, 125);
+            this.button_dashbord.TabIndex = 4;
+            this.button_dashbord.Text = "retour";
+            this.button_dashbord.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button_dashbord.UseVisualStyleBackColor = false;
+            // 
+            // button_clean
+            // 
+            this.button_clean.BackColor = System.Drawing.SystemColors.Desktop;
+            this.button_clean.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button_clean.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button_clean.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_clean.ForeColor = System.Drawing.SystemColors.Info;
+            this.button_clean.Image = ((System.Drawing.Image)(resources.GetObject("button_clean.Image")));
+            this.button_clean.Location = new System.Drawing.Point(0, 0);
+            this.button_clean.Name = "button_clean";
+            this.button_clean.Size = new System.Drawing.Size(218, 135);
+            this.button_clean.TabIndex = 4;
+            this.button_clean.Text = "clean";
+            this.button_clean.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button_clean.UseVisualStyleBackColor = false;
+            this.button_clean.Click += new System.EventHandler(this.button_clean_Click);
+            // 
             // EmailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 26F);
@@ -258,5 +297,7 @@
         private System.Windows.Forms.TextBox textBox_subject;
         private System.Windows.Forms.RichTextBox richTextBox_content;
         private System.Windows.Forms.ComboBox comboBox_email;
+        private System.Windows.Forms.Button button_dashbord;
+        private System.Windows.Forms.Button button_clean;
     }
 }

@@ -142,6 +142,15 @@ namespace hotel
             {
                 MessageBox.Show("Une erreur s'est produite : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        } } }        
+        }
+
+        private void button_clean_Click(object sender, EventArgs e)
+        {
+
+            textBox_subject.Clear();
+            richTextBox_content.Clear();
+            comboBox_email.SelectedIndex = 0;
+        }
+    } }        
     
 
