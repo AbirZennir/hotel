@@ -46,15 +46,18 @@
             this.comboBox_email = new System.Windows.Forms.ComboBox();
             this.button_dashbord = new System.Windows.Forms.Button();
             this.button_clean = new System.Windows.Forms.Button();
+            this.button_logout = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.button_logout);
+            this.panel1.Controls.Add(this.button_clean);
             this.panel1.Controls.Add(this.button_dashbord);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -134,8 +137,7 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.button1);
-            this.panel4.Controls.Add(this.button_clean);
+            this.panel4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel4.BackgroundImage")));
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(190, 545);
             this.panel4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -146,13 +148,14 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.Desktop;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Showcard Gothic", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.InactiveBorder;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(218, 0);
+            this.button1.Location = new System.Drawing.Point(0, 395);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(207, 135);
+            this.button1.Size = new System.Drawing.Size(190, 144);
             this.button1.TabIndex = 0;
             this.button1.Text = "send";
             this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -162,7 +165,7 @@
             // label_address
             // 
             this.label_address.AutoSize = true;
-            this.label_address.Location = new System.Drawing.Point(284, 244);
+            this.label_address.Location = new System.Drawing.Point(284, 196);
             this.label_address.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_address.Name = "label_address";
             this.label_address.Size = new System.Drawing.Size(193, 26);
@@ -173,7 +176,7 @@
             // label_subject
             // 
             this.label_subject.AutoSize = true;
-            this.label_subject.Location = new System.Drawing.Point(284, 293);
+            this.label_subject.Location = new System.Drawing.Point(284, 245);
             this.label_subject.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_subject.Name = "label_subject";
             this.label_subject.Size = new System.Drawing.Size(94, 26);
@@ -183,7 +186,7 @@
             // label_content
             // 
             this.label_content.AutoSize = true;
-            this.label_content.Location = new System.Drawing.Point(284, 339);
+            this.label_content.Location = new System.Drawing.Point(284, 291);
             this.label_content.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label_content.Name = "label_content";
             this.label_content.Size = new System.Drawing.Size(102, 26);
@@ -192,14 +195,14 @@
             // 
             // textBox_subject
             // 
-            this.textBox_subject.Location = new System.Drawing.Point(430, 290);
+            this.textBox_subject.Location = new System.Drawing.Point(430, 242);
             this.textBox_subject.Name = "textBox_subject";
             this.textBox_subject.Size = new System.Drawing.Size(599, 32);
             this.textBox_subject.TabIndex = 26;
             // 
             // richTextBox_content
             // 
-            this.richTextBox_content.Location = new System.Drawing.Point(430, 339);
+            this.richTextBox_content.Location = new System.Drawing.Point(430, 291);
             this.richTextBox_content.Name = "richTextBox_content";
             this.richTextBox_content.Size = new System.Drawing.Size(599, 183);
             this.richTextBox_content.TabIndex = 66;
@@ -208,7 +211,7 @@
             // comboBox_email
             // 
             this.comboBox_email.FormattingEnabled = true;
-            this.comboBox_email.Location = new System.Drawing.Point(558, 241);
+            this.comboBox_email.Location = new System.Drawing.Point(558, 193);
             this.comboBox_email.Name = "comboBox_email";
             this.comboBox_email.Size = new System.Drawing.Size(375, 34);
             this.comboBox_email.TabIndex = 68;
@@ -225,28 +228,47 @@
             this.button_dashbord.Location = new System.Drawing.Point(0, 130);
             this.button_dashbord.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
             this.button_dashbord.Name = "button_dashbord";
-            this.button_dashbord.Size = new System.Drawing.Size(190, 125);
+            this.button_dashbord.Size = new System.Drawing.Size(190, 126);
             this.button_dashbord.TabIndex = 4;
             this.button_dashbord.Text = "retour";
             this.button_dashbord.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_dashbord.UseVisualStyleBackColor = false;
+            this.button_dashbord.Click += new System.EventHandler(this.button_dashbord_Click);
             // 
             // button_clean
             // 
             this.button_clean.BackColor = System.Drawing.SystemColors.Desktop;
-            this.button_clean.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button_clean.Dock = System.Windows.Forms.DockStyle.Top;
             this.button_clean.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button_clean.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_clean.ForeColor = System.Drawing.SystemColors.Info;
             this.button_clean.Image = ((System.Drawing.Image)(resources.GetObject("button_clean.Image")));
-            this.button_clean.Location = new System.Drawing.Point(0, 0);
+            this.button_clean.Location = new System.Drawing.Point(0, 256);
             this.button_clean.Name = "button_clean";
-            this.button_clean.Size = new System.Drawing.Size(218, 135);
+            this.button_clean.Size = new System.Drawing.Size(190, 139);
             this.button_clean.TabIndex = 4;
             this.button_clean.Text = "clean";
             this.button_clean.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_clean.UseVisualStyleBackColor = false;
             this.button_clean.Click += new System.EventHandler(this.button_clean_Click);
+            // 
+            // button_logout
+            // 
+            this.button_logout.BackColor = System.Drawing.SystemColors.InfoText;
+            this.button_logout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.button_logout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button_logout.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_logout.ForeColor = System.Drawing.SystemColors.Info;
+            this.button_logout.Image = ((System.Drawing.Image)(resources.GetObject("button_logout.Image")));
+            this.button_logout.Location = new System.Drawing.Point(0, 538);
+            this.button_logout.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.button_logout.Name = "button_logout";
+            this.button_logout.Size = new System.Drawing.Size(190, 142);
+            this.button_logout.TabIndex = 9;
+            this.button_logout.Text = "logout";
+            this.button_logout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button_logout.UseVisualStyleBackColor = false;
+            this.button_logout.Click += new System.EventHandler(this.button_logout_Click);
             // 
             // EmailForm
             // 
@@ -274,7 +296,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -299,5 +320,6 @@
         private System.Windows.Forms.ComboBox comboBox_email;
         private System.Windows.Forms.Button button_dashbord;
         private System.Windows.Forms.Button button_clean;
+        private System.Windows.Forms.Button button_logout;
     }
 }

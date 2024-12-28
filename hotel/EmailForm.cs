@@ -151,6 +151,18 @@ namespace hotel
             richTextBox_content.Clear();
             comboBox_email.SelectedIndex = 0;
         }
+
+        private void button_logout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            loginForm LoginForm = new loginForm();
+            LoginForm.Show();
+        }
+
+        private void button_dashbord_Click(object sender, EventArgs e)
+        {
+
+        }
     } }        
     
 
