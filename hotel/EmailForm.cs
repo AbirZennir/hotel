@@ -161,7 +161,9 @@ namespace hotel
 
         private void button_dashbord_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
         }
     } }        
     
