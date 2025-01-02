@@ -111,5 +111,24 @@ namespace hotel
                 }
             }
         }
+
+        private void button_dashbord_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainForm mainForm = new MainForm();
+            mainForm.Show();
+        }
+
+        private void button_logout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            loginForm LoginForm = new loginForm();
+            LoginForm.Show();
+        }
+
+        private void label_exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
