@@ -51,6 +51,15 @@
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.panel_slide = new System.Windows.Forms.Panel();
             this.panel_main = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.RoomsLbl = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.ReceptionLbl = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.GuestLbl = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
@@ -64,24 +73,15 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label_exit = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.RoomsLbl = new System.Windows.Forms.Label();
-            this.GuestLbl = new System.Windows.Forms.Label();
-            this.ReceptionLbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel_main.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -382,9 +382,106 @@
             this.panel_main.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_main.Location = new System.Drawing.Point(200, 0);
             this.panel_main.Name = "panel_main";
-            this.panel_main.Size = new System.Drawing.Size(900, 700);
+            this.panel_main.Size = new System.Drawing.Size(894, 700);
             this.panel_main.TabIndex = 14;
             this.panel_main.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_main_Paint);
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel5.Controls.Add(this.RoomsLbl);
+            this.panel5.Controls.Add(this.label8);
+            this.panel5.Location = new System.Drawing.Point(551, 503);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(266, 71);
+            this.panel5.TabIndex = 28;
+            // 
+            // RoomsLbl
+            // 
+            this.RoomsLbl.AutoSize = true;
+            this.RoomsLbl.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.RoomsLbl.ForeColor = System.Drawing.SystemColors.Info;
+            this.RoomsLbl.Location = new System.Drawing.Point(174, 22);
+            this.RoomsLbl.Name = "RoomsLbl";
+            this.RoomsLbl.Size = new System.Drawing.Size(52, 28);
+            this.RoomsLbl.TabIndex = 3;
+            this.RoomsLbl.Text = "Vide";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label8.ForeColor = System.Drawing.SystemColors.Info;
+            this.label8.Location = new System.Drawing.Point(23, 22);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(61, 28);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Room";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel6.Controls.Add(this.ReceptionLbl);
+            this.panel6.Controls.Add(this.label7);
+            this.panel6.Location = new System.Drawing.Point(551, 587);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(266, 71);
+            this.panel6.TabIndex = 28;
+            // 
+            // ReceptionLbl
+            // 
+            this.ReceptionLbl.AutoSize = true;
+            this.ReceptionLbl.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.ReceptionLbl.ForeColor = System.Drawing.SystemColors.Info;
+            this.ReceptionLbl.Location = new System.Drawing.Point(174, 18);
+            this.ReceptionLbl.Name = "ReceptionLbl";
+            this.ReceptionLbl.Size = new System.Drawing.Size(52, 28);
+            this.ReceptionLbl.TabIndex = 6;
+            this.ReceptionLbl.Text = "Vide";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label7.ForeColor = System.Drawing.SystemColors.Info;
+            this.label7.Location = new System.Drawing.Point(23, 18);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(96, 28);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Reception";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.Desktop;
+            this.panel3.Controls.Add(this.GuestLbl);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Location = new System.Drawing.Point(551, 415);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(266, 71);
+            this.panel3.TabIndex = 27;
+            // 
+            // GuestLbl
+            // 
+            this.GuestLbl.AutoSize = true;
+            this.GuestLbl.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.GuestLbl.ForeColor = System.Drawing.SystemColors.Info;
+            this.GuestLbl.Location = new System.Drawing.Point(174, 18);
+            this.GuestLbl.Name = "GuestLbl";
+            this.GuestLbl.Size = new System.Drawing.Size(52, 28);
+            this.GuestLbl.TabIndex = 5;
+            this.GuestLbl.Text = "Vide";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label5.ForeColor = System.Drawing.SystemColors.Info;
+            this.label5.Location = new System.Drawing.Point(23, 18);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 28);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Guest";
             // 
             // panel4
             // 
@@ -539,109 +636,12 @@
             this.label6.Text = "Sunset Hotel";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.SystemColors.Desktop;
-            this.panel3.Controls.Add(this.GuestLbl);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Location = new System.Drawing.Point(551, 415);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(266, 71);
-            this.panel3.TabIndex = 27;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.SystemColors.Desktop;
-            this.panel5.Controls.Add(this.RoomsLbl);
-            this.panel5.Controls.Add(this.label8);
-            this.panel5.Location = new System.Drawing.Point(551, 503);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(266, 71);
-            this.panel5.TabIndex = 28;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.SystemColors.Desktop;
-            this.panel6.Controls.Add(this.ReceptionLbl);
-            this.panel6.Controls.Add(this.label7);
-            this.panel6.Location = new System.Drawing.Point(551, 587);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(266, 71);
-            this.panel6.TabIndex = 28;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label5.ForeColor = System.Drawing.SystemColors.Info;
-            this.label5.Location = new System.Drawing.Point(23, 18);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 28);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Guest";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label7.ForeColor = System.Drawing.SystemColors.Info;
-            this.label7.Location = new System.Drawing.Point(23, 18);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(96, 28);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Reception";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label8.ForeColor = System.Drawing.SystemColors.Info;
-            this.label8.Location = new System.Drawing.Point(23, 22);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 28);
-            this.label8.TabIndex = 2;
-            this.label8.Text = "Room";
-            // 
-            // RoomsLbl
-            // 
-            this.RoomsLbl.AutoSize = true;
-            this.RoomsLbl.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.RoomsLbl.ForeColor = System.Drawing.SystemColors.Info;
-            this.RoomsLbl.Location = new System.Drawing.Point(174, 22);
-            this.RoomsLbl.Name = "RoomsLbl";
-            this.RoomsLbl.Size = new System.Drawing.Size(52, 28);
-            this.RoomsLbl.TabIndex = 3;
-            this.RoomsLbl.Text = "Vide";
-            // 
-            // GuestLbl
-            // 
-            this.GuestLbl.AutoSize = true;
-            this.GuestLbl.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.GuestLbl.ForeColor = System.Drawing.SystemColors.Info;
-            this.GuestLbl.Location = new System.Drawing.Point(174, 18);
-            this.GuestLbl.Name = "GuestLbl";
-            this.GuestLbl.Size = new System.Drawing.Size(52, 28);
-            this.GuestLbl.TabIndex = 5;
-            this.GuestLbl.Text = "Vide";
-            // 
-            // ReceptionLbl
-            // 
-            this.ReceptionLbl.AutoSize = true;
-            this.ReceptionLbl.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.ReceptionLbl.ForeColor = System.Drawing.SystemColors.Info;
-            this.ReceptionLbl.Location = new System.Drawing.Point(174, 18);
-            this.ReceptionLbl.Name = "ReceptionLbl";
-            this.ReceptionLbl.Size = new System.Drawing.Size(52, 28);
-            this.ReceptionLbl.TabIndex = 6;
-            this.ReceptionLbl.Text = "Vide";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(1100, 700);
+            this.ClientSize = new System.Drawing.Size(1094, 700);
             this.Controls.Add(this.panel_main);
             this.Controls.Add(this.panel_slide);
             this.Controls.Add(this.checkBox5);
@@ -661,6 +661,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -668,13 +669,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel_main.ResumeLayout(false);
             this.panel_main.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

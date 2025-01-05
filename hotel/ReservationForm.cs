@@ -51,6 +51,42 @@ namespace hotel
 
             dataGridView_reserv.DefaultCellStyle.ForeColor = Color.Black;
 
+            try
+            {
+                DataTable dataTable = new DataTable();
+                dataTable.Columns.Add("ReservationId");
+                dataTable.Columns.Add("ClientId");
+                dataTable.Columns.Add("RoomId");
+                dataTable.Columns.Add("CheckInDate");
+                dataTable.Columns.Add("CheckOutDate");
+                dataTable.Columns.Add("TotalAmount");
+                dataTable.Columns.Add("ReservationDate");
+                dataTable.Columns.Add("RoomTypeId");
+
+                dataGridView_reserv.DataSource = dataTable;
+
+                if (dataGridView_reserv.Columns["ReservationId"] != null)
+                    dataGridView_reserv.Columns["ReservationId"].HeaderText = "ID Réservation";
+                if (dataGridView_reserv.Columns["ClientId"] != null)
+                    dataGridView_reserv.Columns["ClientId"].HeaderText = "ID Client";
+                if (dataGridView_reserv.Columns["RoomId"] != null)
+                    dataGridView_reserv.Columns["RoomId"].HeaderText = "ID Chambre";
+                if (dataGridView_reserv.Columns["CheckInDate"] != null)
+                    dataGridView_reserv.Columns["CheckInDate"].HeaderText = "Date d'Arrivée";
+                if (dataGridView_reserv.Columns["CheckOutDate"] != null)
+                    dataGridView_reserv.Columns["CheckOutDate"].HeaderText = "Date de Départ";
+                if (dataGridView_reserv.Columns["TotalAmount"] != null)
+                    dataGridView_reserv.Columns["TotalAmount"].HeaderText = "Montant Total";
+                if (dataGridView_reserv.Columns["ReservationDate"] != null)
+                    dataGridView_reserv.Columns["ReservationDate"].HeaderText = "Date de Réservation";
+                if (dataGridView_reserv.Columns["RoomTypeId"] != null)
+                    dataGridView_reserv.Columns["RoomTypeId"].HeaderText = "ID Type de Chambre";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur : " + ex.Message, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
             getReservTable();
         }
 
@@ -523,7 +559,15 @@ namespace hotel
                 }
             }
         }
+
+        private void button_search_Click(object sender, EventArgs e)
+        {
+             
+            SearchReservationForm searchForm = new SearchReservationForm();
+            searchForm.Show();
+        }
     }
-}
+    }
+
     
 
