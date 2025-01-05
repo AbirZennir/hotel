@@ -122,6 +122,9 @@ namespace hotel
         {
             panel_slide.Height=button_reception.Height;
             panel_slide.Top=button_reception.Top;
+            this.Hide();
+            ReservationForm resForm = new ReservationForm();
+            resForm.Show();
         }
 
         private void button_room_Click(object sender, EventArgs e)
