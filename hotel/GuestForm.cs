@@ -266,4 +266,10 @@ namespace hotel
             loginForm LoginForm = new loginForm();
             LoginForm.Show();
         }
+
+        private void button_search_Click(object sender, EventArgs e)
+        {
+            SearchGuestForm searchForm = new SearchGuestForm();
+            searchForm.Show();
+        }
     } }

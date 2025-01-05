@@ -66,6 +66,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.dataGridView_guest = new Guna.UI2.WinForms.Guna2DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.button_search = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -227,6 +228,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button_search);
             this.panel1.Controls.Add(this.button_clean);
             this.panel1.Controls.Add(this.button_delete);
             this.panel1.Controls.Add(this.button_update);
@@ -245,9 +247,9 @@
             this.button_clean.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_clean.ForeColor = System.Drawing.SystemColors.Info;
             this.button_clean.Image = ((System.Drawing.Image)(resources.GetObject("button_clean.Image")));
-            this.button_clean.Location = new System.Drawing.Point(684, 0);
+            this.button_clean.Location = new System.Drawing.Point(534, 0);
             this.button_clean.Name = "button_clean";
-            this.button_clean.Size = new System.Drawing.Size(228, 126);
+            this.button_clean.Size = new System.Drawing.Size(183, 126);
             this.button_clean.TabIndex = 3;
             this.button_clean.Text = "clean";
             this.button_clean.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -262,9 +264,9 @@
             this.button_delete.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_delete.ForeColor = System.Drawing.SystemColors.Info;
             this.button_delete.Image = ((System.Drawing.Image)(resources.GetObject("button_delete.Image")));
-            this.button_delete.Location = new System.Drawing.Point(456, 0);
+            this.button_delete.Location = new System.Drawing.Point(355, 0);
             this.button_delete.Name = "button_delete";
-            this.button_delete.Size = new System.Drawing.Size(228, 126);
+            this.button_delete.Size = new System.Drawing.Size(179, 126);
             this.button_delete.TabIndex = 2;
             this.button_delete.Text = "delete";
             this.button_delete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -279,9 +281,9 @@
             this.button_update.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_update.ForeColor = System.Drawing.SystemColors.Info;
             this.button_update.Image = ((System.Drawing.Image)(resources.GetObject("button_update.Image")));
-            this.button_update.Location = new System.Drawing.Point(228, 0);
+            this.button_update.Location = new System.Drawing.Point(172, 0);
             this.button_update.Name = "button_update";
-            this.button_update.Size = new System.Drawing.Size(228, 126);
+            this.button_update.Size = new System.Drawing.Size(183, 126);
             this.button_update.TabIndex = 1;
             this.button_update.Text = "update";
             this.button_update.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -298,7 +300,7 @@
             this.button_save.Image = ((System.Drawing.Image)(resources.GetObject("button_save.Image")));
             this.button_save.Location = new System.Drawing.Point(0, 0);
             this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(228, 126);
+            this.button_save.Size = new System.Drawing.Size(172, 126);
             this.button_save.TabIndex = 0;
             this.button_save.Text = "save";
             this.button_save.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -514,6 +516,23 @@
             this.panel6.TabIndex = 29;
             this.panel6.Paint += new System.Windows.Forms.PaintEventHandler(this.panel6_Paint);
             // 
+            // button_search
+            // 
+            this.button_search.BackColor = System.Drawing.SystemColors.Desktop;
+            this.button_search.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button_search.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button_search.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_search.ForeColor = System.Drawing.SystemColors.Info;
+            this.button_search.Image = ((System.Drawing.Image)(resources.GetObject("button_search.Image")));
+            this.button_search.Location = new System.Drawing.Point(717, 0);
+            this.button_search.Name = "button_search";
+            this.button_search.Size = new System.Drawing.Size(183, 126);
+            this.button_search.TabIndex = 4;
+            this.button_search.Text = "search";
+            this.button_search.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button_search.UseVisualStyleBackColor = false;
+            this.button_search.Click += new System.EventHandler(this.button_search_Click);
+            // 
             // GuestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 28F);
@@ -591,5 +610,6 @@
         private System.Windows.Forms.Panel panel6;
         private Guna.UI2.WinForms.Guna2DataGridView dataGridView_guest;
         private System.Windows.Forms.Label label_exit;
+        private System.Windows.Forms.Button button_search;
     }
 }
