@@ -164,6 +164,12 @@
     <Compile Include="RoomForm.Designer.cs">
       <DependentUpon>RoomForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SearcheRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearcheRoomForm.Designer.cs">
+      <DependentUpon>SearcheRoomForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SearchGuestForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RoomForm.resx">
       <DependentUpon>RoomForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearcheRoomForm.resx">
+      <DependentUpon>SearcheRoomForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchGuestForm.resx">
       <DependentUpon>SearchGuestForm.cs</DependentUpon>

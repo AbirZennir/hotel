@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RoomForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button_logout = new System.Windows.Forms.Button();
             this.button_room = new System.Windows.Forms.Button();
@@ -62,6 +62,7 @@
             this.comboBox_roomType = new System.Windows.Forms.ComboBox();
             this.radioButton_free = new System.Windows.Forms.RadioButton();
             this.radioButton_basy = new System.Windows.Forms.RadioButton();
+            this.button_search = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -207,6 +208,7 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.button_search);
             this.panel7.Controls.Add(this.button_clean);
             this.panel7.Controls.Add(this.button_delete);
             this.panel7.Controls.Add(this.button_update);
@@ -225,9 +227,9 @@
             this.button_clean.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_clean.ForeColor = System.Drawing.SystemColors.Info;
             this.button_clean.Image = ((System.Drawing.Image)(resources.GetObject("button_clean.Image")));
-            this.button_clean.Location = new System.Drawing.Point(684, 0);
+            this.button_clean.Location = new System.Drawing.Point(569, 0);
             this.button_clean.Name = "button_clean";
-            this.button_clean.Size = new System.Drawing.Size(218, 126);
+            this.button_clean.Size = new System.Drawing.Size(165, 126);
             this.button_clean.TabIndex = 3;
             this.button_clean.Text = "clean";
             this.button_clean.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -242,9 +244,9 @@
             this.button_delete.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_delete.ForeColor = System.Drawing.SystemColors.Info;
             this.button_delete.Image = ((System.Drawing.Image)(resources.GetObject("button_delete.Image")));
-            this.button_delete.Location = new System.Drawing.Point(456, 0);
+            this.button_delete.Location = new System.Drawing.Point(375, 0);
             this.button_delete.Name = "button_delete";
-            this.button_delete.Size = new System.Drawing.Size(228, 126);
+            this.button_delete.Size = new System.Drawing.Size(194, 126);
             this.button_delete.TabIndex = 2;
             this.button_delete.Text = "delete";
             this.button_delete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -259,9 +261,9 @@
             this.button_update.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_update.ForeColor = System.Drawing.SystemColors.Info;
             this.button_update.Image = ((System.Drawing.Image)(resources.GetObject("button_update.Image")));
-            this.button_update.Location = new System.Drawing.Point(214, 0);
+            this.button_update.Location = new System.Drawing.Point(174, 0);
             this.button_update.Name = "button_update";
-            this.button_update.Size = new System.Drawing.Size(242, 126);
+            this.button_update.Size = new System.Drawing.Size(201, 126);
             this.button_update.TabIndex = 1;
             this.button_update.Text = "update";
             this.button_update.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -278,7 +280,7 @@
             this.button_save.Image = ((System.Drawing.Image)(resources.GetObject("button_save.Image")));
             this.button_save.Location = new System.Drawing.Point(0, 0);
             this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(214, 126);
+            this.button_save.Size = new System.Drawing.Size(174, 126);
             this.button_save.TabIndex = 0;
             this.button_save.Text = "save";
             this.button_save.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -296,26 +298,26 @@
             // 
             // dataGridView_room
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dataGridView_room.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_room.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dataGridView_room.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_room.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView_room.ColumnHeadersHeight = 4;
             this.dataGridView_room.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView_room.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView_room.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView_room.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dataGridView_room.Location = new System.Drawing.Point(6, 0);
             this.dataGridView_room.Name = "dataGridView_room";
@@ -493,6 +495,23 @@
             this.radioButton_basy.UseVisualStyleBackColor = true;
             this.radioButton_basy.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
+            // button_search
+            // 
+            this.button_search.BackColor = System.Drawing.SystemColors.Desktop;
+            this.button_search.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button_search.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button_search.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_search.ForeColor = System.Drawing.SystemColors.Info;
+            this.button_search.Image = ((System.Drawing.Image)(resources.GetObject("button_search.Image")));
+            this.button_search.Location = new System.Drawing.Point(734, 0);
+            this.button_search.Name = "button_search";
+            this.button_search.Size = new System.Drawing.Size(183, 126);
+            this.button_search.TabIndex = 6;
+            this.button_search.Text = "search";
+            this.button_search.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button_search.UseVisualStyleBackColor = false;
+            this.button_search.Click += new System.EventHandler(this.button_search_Click);
+            // 
             // RoomForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 30F);
@@ -566,5 +585,6 @@
         private System.Windows.Forms.ComboBox comboBox_roomType;
         private System.Windows.Forms.RadioButton radioButton_basy;
         private System.Windows.Forms.RadioButton radioButton_free;
+        private System.Windows.Forms.Button button_search;
     }
 }

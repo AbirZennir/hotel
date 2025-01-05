@@ -248,5 +248,11 @@ namespace hotel
         {
 
         }
+
+        private void button_search_Click(object sender, EventArgs e)
+        {
+            SearcheRoomForm searchForm = new SearcheRoomForm();
+            searchForm.Show();
+        }
     }
 }
