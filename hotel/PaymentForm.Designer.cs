@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label_exit = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
             this.dateTimePicker_dateIn = new System.Windows.Forms.DateTimePicker();
             this.montant = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +53,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(909, 100);
+            this.panel1.Size = new System.Drawing.Size(905, 100);
             this.panel1.TabIndex = 3;
             // 
             // label_exit
@@ -92,7 +94,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(522, 262);
+            this.label1.Location = new System.Drawing.Point(522, 222);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 20);
             this.label1.TabIndex = 38;
@@ -101,7 +103,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(465, 209);
+            this.label4.Location = new System.Drawing.Point(465, 169);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(137, 20);
             this.label4.TabIndex = 34;
@@ -110,7 +112,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(64, 262);
+            this.label2.Location = new System.Drawing.Point(64, 222);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(118, 20);
             this.label2.TabIndex = 30;
@@ -119,7 +121,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(82, 209);
+            this.label7.Location = new System.Drawing.Point(82, 169);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 20);
             this.label7.TabIndex = 28;
@@ -127,7 +129,7 @@
             // 
             // textBox_Id
             // 
-            this.textBox_Id.Location = new System.Drawing.Point(236, 206);
+            this.textBox_Id.Location = new System.Drawing.Point(236, 166);
             this.textBox_Id.Name = "textBox_Id";
             this.textBox_Id.Size = new System.Drawing.Size(197, 26);
             this.textBox_Id.TabIndex = 27;
@@ -135,7 +137,7 @@
             // dateTimePicker_dateIn
             // 
             this.dateTimePicker_dateIn.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker_dateIn.Location = new System.Drawing.Point(236, 257);
+            this.dateTimePicker_dateIn.Location = new System.Drawing.Point(236, 217);
             this.dateTimePicker_dateIn.Name = "dateTimePicker_dateIn";
             this.dateTimePicker_dateIn.Size = new System.Drawing.Size(197, 26);
             this.dateTimePicker_dateIn.TabIndex = 66;
@@ -144,7 +146,7 @@
             // 
             this.montant.AutoSize = true;
             this.montant.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.montant.Location = new System.Drawing.Point(617, 263);
+            this.montant.Location = new System.Drawing.Point(617, 223);
             this.montant.Name = "montant";
             this.montant.Size = new System.Drawing.Size(27, 20);
             this.montant.TabIndex = 67;
@@ -154,18 +156,27 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(639, 204);
+            this.comboBox1.Location = new System.Drawing.Point(621, 164);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(163, 28);
+            this.comboBox1.Size = new System.Drawing.Size(207, 28);
             this.comboBox1.TabIndex = 68;
-        
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 321);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(905, 110);
+            this.panel2.TabIndex = 69;
             // 
             // PaymentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
-            this.ClientSize = new System.Drawing.Size(909, 521);
+            this.ClientSize = new System.Drawing.Size(905, 431);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.montant);
             this.Controls.Add(this.dateTimePicker_dateIn);
@@ -200,5 +211,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker_dateIn;
         private System.Windows.Forms.Label montant;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
