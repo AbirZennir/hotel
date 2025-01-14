@@ -95,5 +95,36 @@ namespace hotel
             }
         }
 
+        private bool UpdatePayment(int reservationId, decimal paymentAmount, string paymentStatus)
+        {
+            try
+            {
+                // SQL query pour mettre à jour le paiement
+                string updateQuery = @"UPDATE Payments 
+                               SET Amount = @Amount, Status = @Status
+                               WHERE ReservationId = @ReservationId";
+
+                using (SqlCommand command = new SqlCommand(updateQuery, connect.GetConnection()))
+                {
+                    command.Parameters.AddWithValue("@Amount", paymentAmount);
+                    command.Parameters.AddWithValue("@Status", paymentStatus);
+                    command.Parameters.AddWithValue("@ReservationId", reservationId);
+
+                    connect.OpenCon();
+                    int result = command.ExecuteNonQuery();
+                    connect.CloseCon();
+
+                    return result > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log des erreurs si nécessaire
+                //File.AppendAllText("error_log.txt", $"{DateTime.Now}: {ex.Message}\n{ex.StackTrace}\n");
+                MessageBox.Show("Erreur lors de la mise à jour du paiement. Veuillez contacter l'administrateur.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
     }
 }

@@ -168,6 +168,50 @@ namespace hotel
 
         private void button_update_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Vérifier si la méthode de paiement a été sélectionnée
+                if (comboBox1.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Veuillez sélectionner une méthode de paiement.",
+                                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Calculer le montant total (au cas où il y a un changement dans les dates)
+                decimal totalAmount = (dateOut.Date - dateIn.Date).Days * pricePerNight;
+
+                // Requête SQL pour mettre à jour le montant et la méthode de paiement
+                string query = "UPDATE Payments SET Amount = @TotalAmount, PaymentMethod = @PaymentMethod WHERE ReservationId = @ReservationId";
+
+                // Connexion à la base de données
+                DBConnect connect = new DBConnect();
+
+                using (SqlCommand command = new SqlCommand(query, connect.GetConnection()))
+                {
+                    // Ajouter les paramètres à la requête SQL
+                    command.Parameters.AddWithValue("@TotalAmount", totalAmount);
+                    command.Parameters.AddWithValue("@PaymentMethod", comboBox1.SelectedItem.ToString());
+                    command.Parameters.AddWithValue("@ReservationId", reservationId);
+
+                    // Ouvrir la connexion et exécuter la requête
+                    connect.OpenCon();
+                    command.ExecuteNonQuery();
+                    connect.CloseCon();
+
+                    // Informer l'utilisateur que la mise à jour a réussi
+                    MessageBox.Show("Paiement mis à jour avec succès.",
+                                    "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                // En cas d'erreur, afficher un message d'erreur
+                MessageBox.Show($"Erreur lors de la mise à jour du paiement : {ex.Message}",
+                                "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }

@@ -48,15 +48,16 @@ namespace hotel
         // Change room status when reserved
         public bool setReservRoom(int roomId, string status)
         {
-            string updateQuery = "UPDATE [Rooms] SET [Status]=@status WHERE [RoomId]=@roomId";
-            SqlCommand command = new SqlCommand(updateQuery, connect.GetConnection());
-            command.Parameters.Add("@roomId", SqlDbType.Int).Value = roomId;
-            command.Parameters.Add("@status", SqlDbType.NVarChar).Value = status;
-
-            connect.OpenCon();
-            bool success = command.ExecuteNonQuery() == 1;
-            connect.CloseCon();
-            return success;
+            string query = "UPDATE Rooms SET Status = @Status WHERE RoomId = @RoomId";
+            DBConnect connect = new DBConnect();
+            using (SqlCommand command = new SqlCommand(query, connect.GetConnection()))
+            {
+                command.Parameters.AddWithValue("@RoomId", roomId);
+                command.Parameters.AddWithValue("@Status", status);
+                connect.OpenCon();
+                int rowsAffected = command.ExecuteNonQuery();
+                return rowsAffected > 0;  // Retourne vrai si la mise à jour a réussi
+            }
         }
 
         // Add a reservation
@@ -143,15 +144,15 @@ namespace hotel
         // Fetch room status
         public string getRoomStatus(int roomId)
         {
-            string query = "SELECT [Status] FROM [Rooms] WHERE [RoomId]=@roomId";
-            SqlCommand command = new SqlCommand(query, connect.GetConnection());
-            command.Parameters.Add("@roomId", SqlDbType.Int).Value = roomId;
-
-            connect.OpenCon();
-            object result = command.ExecuteScalar();
-            connect.CloseCon();
-
-            return result != null ? result.ToString() : "Unknown";
+            string query = "SELECT Status FROM Rooms WHERE RoomId = @RoomId";
+            DBConnect connect = new DBConnect();
+            using (SqlCommand command = new SqlCommand(query, connect.GetConnection()))
+            {
+                command.Parameters.AddWithValue("@RoomId", roomId);
+                connect.OpenCon();
+                object result = command.ExecuteScalar();
+                return result != null ? result.ToString() : "Free";  // Retourne "Libre" si aucun statut n'est trouvé
+            }
         }
 
         // Handle exceptions and log errors

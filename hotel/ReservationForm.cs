@@ -283,6 +283,15 @@ namespace hotel
                     return;
                 }
 
+                // Vérifier le statut de la chambre avant de la mettre à jour
+                string currentRoomStatus = reservation.getRoomStatus(roomId);  // Ajouter cette méthode dans la classe Reservation
+                if (currentRoomStatus == "Busy" && dIn != Convert.ToDateTime(dataGridView_reserv.CurrentRow.Cells["CheckInDate"].Value))
+                {
+                    MessageBox.Show("La chambre est déjà occupée à cette date.",
+                        "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 // Demander confirmation
                 if (MessageBox.Show("Voulez-vous confirmer la modification de cette réservation ?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -292,9 +301,8 @@ namespace hotel
 
                     if (isUpdated)
                     {
-                        // Mise à jour du statut de la chambre (par exemple, "Busy" si la chambre est réservée)
-                        bool isRoomUpdated = reservation.setReservRoom(roomId, "Busy");
-
+                        // Mettre à jour le statut de la chambre (par exemple, "Busy" si la chambre est réservée)
+                        bool isRoomUpdated = reservation.setReservRoom(roomId, "Busy"); // mettre à jour le statut de la chambre
                         if (isRoomUpdated)
                         {
                             MessageBox.Show("Réservation modifiée et statut de la chambre mis à jour avec succès",
@@ -387,12 +395,15 @@ namespace hotel
                 // Récupération de l'ID de la réservation
                 int reservationId = Convert.ToInt32(dataGridView_reserv.CurrentRow.Cells["ReservationId"].Value);
 
+                // Récupérer l'ID de la chambre associée à la réservation
+                int roomId = Convert.ToInt32(dataGridView_reserv.CurrentRow.Cells["RoomId"].Value);
+
                 // Demander confirmation
                 if (MessageBox.Show("Voulez-vous vraiment supprimer cette réservation ?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     // Suppression du paiement associé à la réservation
-                    bool isPaymentDeleted = payment.removePayment(reservationId); // Utilisation de payment correctement initialisé
+                    bool isPaymentDeleted = payment.removePayment(reservationId);
 
                     if (isPaymentDeleted)
                     {
@@ -401,10 +412,21 @@ namespace hotel
 
                         if (isDeleted)
                         {
-                            MessageBox.Show("Réservation et paiement supprimés avec succès.",
-                                "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            getReservTable();
-                            ClearFields();
+                            // Mise à jour du statut de la chambre à "Free"
+                            bool isRoomUpdated = reservation.setReservRoom(roomId, "Free");
+
+                            if (isRoomUpdated)
+                            {
+                                MessageBox.Show("Réservation et paiement supprimés avec succès, et la chambre est maintenant libre.",
+                                    "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                getReservTable();
+                                ClearFields();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Échec de la mise à jour du statut de la chambre.",
+                                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                         else
                         {
