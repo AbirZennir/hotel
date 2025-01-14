@@ -48,15 +48,25 @@ namespace hotel
         // Change room status when reserved
         public bool setReservRoom(int roomId, string status)
         {
-            string query = "UPDATE Rooms SET Status = @Status WHERE RoomId = @RoomId";
-            DBConnect connect = new DBConnect();
-            using (SqlCommand command = new SqlCommand(query, connect.GetConnection()))
+            try
             {
-                command.Parameters.AddWithValue("@RoomId", roomId);
-                command.Parameters.AddWithValue("@Status", status);
-                connect.OpenCon();
-                int rowsAffected = command.ExecuteNonQuery();
-                return rowsAffected > 0;  // Retourne vrai si la mise à jour a réussi
+                string query = "UPDATE Rooms SET status = @status WHERE RoomId = @RoomId";
+                SqlCommand command = new SqlCommand(query, connect.GetConnection());
+                
+                    command.Parameters.AddWithValue("@status", status);
+                    command.Parameters.AddWithValue("@RoomId", roomId);
+
+                    connect.OpenCon();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    connect.CloseCon();
+
+                    return rowsAffected > 0;
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la mise à jour du statut de la chambre: " + ex.Message);
+                return false;
             }
         }
 
@@ -144,8 +154,8 @@ namespace hotel
         // Fetch room status
         public string getRoomStatus(int roomId)
         {
-            string query = "SELECT Status FROM Rooms WHERE RoomId = @RoomId";
-            DBConnect connect = new DBConnect();
+            string query = "SELECT status FROM Rooms WHERE RoomId = @RoomId";
+            
             using (SqlCommand command = new SqlCommand(query, connect.GetConnection()))
             {
                 command.Parameters.AddWithValue("@RoomId", roomId);

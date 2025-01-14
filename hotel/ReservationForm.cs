@@ -302,7 +302,7 @@ namespace hotel
                     if (isUpdated)
                     {
                         // Mettre à jour le statut de la chambre (par exemple, "Busy" si la chambre est réservée)
-                        bool isRoomUpdated = reservation.setReservRoom(roomId, "Busy"); // mettre à jour le statut de la chambre
+                        bool isRoomUpdated = reservation.setReservRoom(roomId, "Free"); // mettre à jour le statut de la chambre
                         if (isRoomUpdated)
                         {
                             MessageBox.Show("Réservation modifiée et statut de la chambre mis à jour avec succès",
