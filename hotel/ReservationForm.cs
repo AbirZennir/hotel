@@ -16,10 +16,11 @@ namespace hotel
         RoomClass room = new RoomClass();
         ReservationClass reservation = new ReservationClass();
         decimal totalAmount;
+        private PaymentClass payment;
         public ReservationForm()
         {
             InitializeComponent();
-            
+            payment = new PaymentClass();
 
         }
 
@@ -375,66 +376,63 @@ namespace hotel
         {
             try
             {
-                // Vérifier si une réservation est sélectionnée
-                if (string.IsNullOrEmpty(textBox_Id.Text))
+                // Vérification de la sélection
+                if (dataGridView_reserv.CurrentRow == null)
                 {
-                    MessageBox.Show("Veuillez sélectionner une réservation à supprimer", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Veuillez sélectionner une réservation à supprimer",
+                        "Sélection requise", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Conversion des IDs
-                if (!int.TryParse(textBox_Id.Text, out int reserId))
-                {
-                    MessageBox.Show("L'ID de réservation est invalide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                // Récupération de l'ID de la réservation
+                int reservationId = Convert.ToInt32(dataGridView_reserv.CurrentRow.Cells["ReservationId"].Value);
 
-                if (!int.TryParse(comboBox_roomId.SelectedValue?.ToString(), out int roomId))
-                {
-                    MessageBox.Show("L'ID de la chambre est invalide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Demander confirmation avant la suppression
-                if (MessageBox.Show("Êtes-vous sûr de vouloir supprimer cette réservation ?",
+                // Demander confirmation
+                if (MessageBox.Show("Voulez-vous vraiment supprimer cette réservation ?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    // Suppression de la réservation et mise à jour du statut de la chambre
-                    bool isRemoved = reservation.removeReserv(reserId);
-                    bool isRoomUpdated = reservation.setReservRoom(roomId, "Free");
+                    // Suppression du paiement associé à la réservation
+                    bool isPaymentDeleted = payment.removePayment(reservationId); // Utilisation de payment correctement initialisé
 
-                    if (isRemoved && isRoomUpdated)
+                    if (isPaymentDeleted)
                     {
-                        // Actualiser la table des réservations et réinitialiser les champs
-                        getReservTable();
-                        ClearFields();
-                        MessageBox.Show("Réservation supprimée avec succès", "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Suppression de la réservation
+                        bool isDeleted = reservation.removeReserv(reservationId);
+
+                        if (isDeleted)
+                        {
+                            MessageBox.Show("Réservation et paiement supprimés avec succès.",
+                                "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            getReservTable();
+                            ClearFields();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Impossible de supprimer la réservation.",
+                                "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        // Identifier la cause de l'échec
-                        string errorMessage = !isRemoved ? "Échec de la suppression de la réservation." :
-                                            !isRoomUpdated ? "Échec de la mise à jour du statut de la chambre." :
-                                            "Erreur inconnue.";
-                        MessageBox.Show(errorMessage, "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Impossible de supprimer le paiement associé à cette réservation.",
+                            "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
             catch (FormatException)
             {
-                MessageBox.Show("Format de données invalide", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (SqlException sqlEx)
-            {
-                MessageBox.Show($"Erreur SQL : {sqlEx.Message}", "Erreur de suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Format de données invalide",
+                    "Erreur de format", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Une erreur inattendue est survenue : {ex.Message}", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Une erreur est survenue : {ex.Message}",
+                    "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
+    
+
+        
 
         private void dataGridView_reserv_CellClick(object sender, DataGridViewCellEventArgs e)
         {

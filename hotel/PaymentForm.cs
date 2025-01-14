@@ -33,10 +33,11 @@ namespace hotel
         private void CalculateAndDisplayTotalAmount()
         {
             // Calculer la durée du séjour
-            int numberOfNights = (dateOut - dateIn).Days;
+            int numberOfNights = (dateOut.Date - dateIn.Date).Days;
 
             // Calculer le montant total (nombre de nuits * prix par nuit)
             decimal totalAmount = numberOfNights * pricePerNight;
+
 
             // Afficher le montant total sur le formulaire
             montant.Text = $"Montant total : {totalAmount:C}";
@@ -61,42 +62,113 @@ namespace hotel
 
         private void label_exit_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private Boolean SaveTotalAmountToReservation()
+        {
+            string query = "UPDATE Reservations SET TotalAmount = @TotalAmount WHERE ReservationId = @ReservationId";
+
+            // Calculer le montant total
+            decimal totalAmount = (dateOut.Date - dateIn.Date).Days * pricePerNight;
+            DBConnect connect = new DBConnect();
+
+            using (SqlCommand command = new SqlCommand(query, connect.GetConnection()))
+            {
+                command.Parameters.AddWithValue("@TotalAmount", totalAmount);
+                command.Parameters.AddWithValue("@ReservationId", reservationId);
+
+                connect.OpenCon();
+                command.ExecuteNonQuery();
+                connect.CloseCon();
+                return true;
+            }
+            return false;
+        }
+
+
+        private Boolean SavePay()
+        {
+            try
+            {
+                // Calculer le montant total
+                decimal totalAmount = (dateOut.Date - dateIn.Date).Days * pricePerNight;
+
+                // Requête SQL pour insérer un paiement
+                string query = "INSERT INTO Payments (ReservationId, PaymentDate, Amount, PaymentMethod) " +
+                               "VALUES (@ReservationId, @PaymentDate, @TotalAmount, @PaymentMethod)";
+
+                // Connexion à la base de données
+                DBConnect connect = new DBConnect();
+
+                using (SqlCommand command = new SqlCommand(query, connect.GetConnection()))
+                {
+                    // Ajouter les paramètres à la requête SQL
+                    command.Parameters.AddWithValue("@ReservationId", reservationId);
+                    command.Parameters.AddWithValue("@TotalAmount", totalAmount);
+                    command.Parameters.AddWithValue("@PaymentDate", DateTime.Now);  // Date du paiement
+                    command.Parameters.AddWithValue("@PaymentMethod", comboBox1.SelectedItem.ToString());  // Méthode de paiement sélectionnée
+
+                    // Ouvrir la connexion et exécuter la requête
+                    connect.OpenCon();
+                    command.ExecuteNonQuery();
+                    connect.CloseCon();
+
+                    // Retourner vrai si l'insertion a réussi
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                // En cas d'erreur, afficher un message d'erreur et retourner faux
+                MessageBox.Show($"Erreur lors de l'enregistrement du paiement : {ex.Message}",
+                                "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+
+
+        private void button_save_Click(object sender, EventArgs e)
+        {
             try
             {
                 // Appeler la méthode pour enregistrer le montant dans la table Reservations
-                SaveTotalAmountToReservation();
-
-                MessageBox.Show("Paiement confirmé et montant enregistré avec succès.",
-                    "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close(); // Fermer le formulaire après confirmation
+                if (SaveTotalAmountToReservation() == true)
+                {
+                    if (SavePay() == true)
+                    {
+                        MessageBox.Show("Paiement confirmé et montant enregistré avec succès.",
+                            "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Paiement errone.",
+                        "Succès", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur lors de l'enregistrement : {ex.Message}",
                     "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
 
         }
 
-        private void SaveTotalAmountToReservation()
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string query = "UPDATE Reservations SET TotalAmount = @TotalAmount WHERE ReservationId = @ReservationId";
 
-            // Calculer le montant total
-            decimal totalAmount = (dateOut - dateIn).Days * pricePerNight;
-            DBConnect connect = new DBConnect();
-            
-                using (SqlCommand command = new SqlCommand(query, connect.GetConnection()))
-                {
-                    command.Parameters.AddWithValue("@TotalAmount", totalAmount);
-                    command.Parameters.AddWithValue("@ReservationId", reservationId);
+        }
 
-                    connect.OpenCon();
-                    command.ExecuteNonQuery(); // Enregistrer le montant dans la base de données
-                    connect.CloseCon();
-                }
-            }
+        private void button_update_Click(object sender, EventArgs e)
+        {
+
         }
     }
-
+}

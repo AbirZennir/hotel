@@ -178,5 +178,12 @@ namespace hotel
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            PdfForm pdfForm = new PdfForm();
+            pdfForm.Show();
+        }
     }
 }

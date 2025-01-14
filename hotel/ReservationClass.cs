@@ -10,6 +10,7 @@ namespace hotel
     {
         DBConnect connect = new DBConnect();
 
+        // Fetch rooms by type that are available
         public DataTable roomByType(int type)
         {
             string selectQuery = "SELECT * FROM [Rooms] WHERE [RoomTypeId]=@type AND [status]='Free'";
@@ -21,7 +22,7 @@ namespace hotel
             return table;
         }
 
-        // To get room type by room number
+        // Get room type by room number
         public int typeByRoomNo(int roomId)
         {
             string selectQuery = "SELECT [RoomTypeId] FROM [Rooms] WHERE [RoomId]=@roomId";
@@ -33,7 +34,7 @@ namespace hotel
             return Convert.ToInt32(table.Rows[0]["RoomTypeId"]);
         }
 
-        // To get the reservation table
+        // Fetch all reservations
         public DataTable getReserv()
         {
             string selectQuery = "SELECT * FROM [Reservations]";
@@ -65,11 +66,11 @@ namespace hotel
                                 (ClientId, RoomId, CheckinDate, CheckOutDate, TotalAmount, ReservationDate, RoomTypeId)
                                 VALUES 
                                 (@clientId, @roomId, @checkinDate, @checkoutDate, @totalAmount, GETDATE(), @roomTypeId)";
-            
+
             try
             {
                 SqlCommand command = new SqlCommand(insertQuery, connect.GetConnection());
-                
+
                 command.Parameters.Add("@clientId", SqlDbType.NVarChar).Value = clientId;
                 command.Parameters.Add("@roomId", SqlDbType.Int).Value = roomId;
                 command.Parameters.Add("@checkinDate", SqlDbType.DateTime).Value = checkinDate;
@@ -80,12 +81,12 @@ namespace hotel
                 connect.OpenCon();
                 int result = command.ExecuteNonQuery();
                 connect.CloseCon();
-                
+
                 return result > 0;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                HandleException(ex);
                 return false;
             }
         }
@@ -125,6 +126,39 @@ namespace hotel
             bool success = command.ExecuteNonQuery() == 1;
             connect.CloseCon();
             return success;
+        }
+
+        // Fetch reservations by client ID
+        public DataTable getReservationsByClient(string clientId)
+        {
+            string selectQuery = "SELECT * FROM [Reservations] WHERE [ClientId]=@clientId";
+            SqlCommand command = new SqlCommand(selectQuery, connect.GetConnection());
+            command.Parameters.Add("@clientId", SqlDbType.NVarChar).Value = clientId;
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            return table;
+        }
+
+        // Fetch room status
+        public string getRoomStatus(int roomId)
+        {
+            string query = "SELECT [Status] FROM [Rooms] WHERE [RoomId]=@roomId";
+            SqlCommand command = new SqlCommand(query, connect.GetConnection());
+            command.Parameters.Add("@roomId", SqlDbType.Int).Value = roomId;
+
+            connect.OpenCon();
+            object result = command.ExecuteScalar();
+            connect.CloseCon();
+
+            return result != null ? result.ToString() : "Unknown";
+        }
+
+        // Handle exceptions and log errors
+        private void HandleException(Exception ex)
+        {
+            MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            System.IO.File.AppendAllText("error_log.txt", $"{DateTime.Now}: {ex.Message}\n{ex.StackTrace}\n");
         }
     }
 }
