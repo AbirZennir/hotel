@@ -1,17 +1,17 @@
 ﻿using iText.Kernel.Pdf;
-using iText.Layout.Properties;
 using iText.Layout;
 using iText.Layout.Element;
+using iText.Layout.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
+
+
 
 
 
@@ -19,6 +19,7 @@ namespace hotel
 {
     public partial class PdfForm : Form
     {
+        private const string ConnectionString = "Server=DESKTOP-U5T5LIJ\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True;";
         public PdfForm()
         {
             InitializeComponent();
@@ -31,12 +32,11 @@ namespace hotel
 
         private void LoadRoomsData()
         {
-            string connectionString = "Server=DESKTOP-U5T5LIJ\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True;";
             string query = "SELECT * FROM Rooms";
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -50,33 +50,70 @@ namespace hotel
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}");
+                LogError(ex);
+                MessageBox.Show($"An error occurred while loading data: {ex.Message}");
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog fileDialog = new SaveFileDialog() { Filter = "PDF File|*.pdf" })
+            using (SaveFileDialog file = new SaveFileDialog() { Filter = "PDF File|*.pdf" })
             {
-                if (fileDialog.ShowDialog() == DialogResult.OK)
+                if (file.ShowDialog() == DialogResult.OK)
                 {
-                    string fileName = fileDialog.FileName;
-
                     try
                     {
-                        // Fetch data from database
-                        DataTable dataTable = FetchRoomsData();
+                        string connectionString = "Server=DESKTOP-U5T5LIJ\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True;";
+                        string query = "SELECT * FROM Rooms";
+                        DataTable dataTable = new DataTable();
 
-                        if (dataTable == null || dataTable.Rows.Count == 0)
+                        using (SqlConnection connection = new SqlConnection(connectionString))
                         {
-                            MessageBox.Show("No data found in the 'Rooms' table.");
-                            return;
+                            connection.Open();
+                            using (SqlCommand command = new SqlCommand(query, connection))
+                            {
+                                SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                                dataAdapter.Fill(dataTable);
+
+                                if (dataTable.Rows.Count == 0)
+                                {
+                                    MessageBox.Show("No data found in the 'rooms' table.");
+                                    return;
+                                }
+
+                                // Créer un document PDF
+                                using (FileStream stream = new FileStream(file.FileName, FileMode.Create))
+                                {
+                                    // Utiliser iTextSharp
+                                    iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document();
+                                    iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, stream);
+                                    pdfDoc.Open();
+
+                                    // Ajouter du contenu au PDF
+                                    PdfPTable pdfTable = new PdfPTable(dataTable.Columns.Count);
+
+                                    // Ajouter les en-têtes
+                                    foreach (DataColumn column in dataTable.Columns)
+                                    {
+                                        pdfTable.AddCell(new Phrase(column.ColumnName));
+                                    }
+
+                                    // Ajouter les données
+                                    foreach (DataRow row in dataTable.Rows)
+                                    {
+                                        foreach (var item in row.ItemArray)
+                                        {
+                                            pdfTable.AddCell(new Phrase(item.ToString()));
+                                        }
+                                    }
+
+                                    pdfDoc.Add(pdfTable);
+                                    pdfDoc.Close();
+                                }
+
+                                MessageBox.Show("Data exported to PDF successfully!");
+                            }
                         }
-
-                        // Create and write to PDF
-                        ExportToPdf(dataTable, fileName);
-
-                        MessageBox.Show($"Data successfully exported to: {fileName}");
                     }
                     catch (Exception ex)
                     {
@@ -88,13 +125,12 @@ namespace hotel
 
         private DataTable FetchRoomsData()
         {
-            string connectionString = "Server=DESKTOP-U5T5LIJ\\SQLEXPRESS;Database=HotelManagement;Integrated Security=True;";
             string query = "SELECT * FROM Rooms";
             DataTable dataTable = new DataTable();
 
             try
             {
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(ConnectionString))
                 {
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -106,6 +142,7 @@ namespace hotel
             }
             catch (Exception ex)
             {
+                LogError(ex);
                 MessageBox.Show($"An error occurred while fetching data: {ex.Message}");
             }
 
@@ -114,46 +151,17 @@ namespace hotel
 
         private void ExportToPdf(DataTable dataTable, string fileName)
         {
-            try
+
+            
+        }
+
+        private void LogError(Exception ex)
+        {
+            // Log error to the console for debugging
+            Console.WriteLine($"[{DateTime.Now}] Error: {ex.Message}");
+            if (ex.InnerException != null)
             {
-                using (PdfWriter writer = new PdfWriter(fileName))
-                {
-                    PdfDocument pdf = new PdfDocument(writer);
-                    Document document = new Document(pdf);
-
-                    // Define fonts
-                    var font = iText.Kernel.Font.PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.HELVETICA);
-                    var boldFont = iText.Kernel.Font.PdfFontFactory.CreateFont(iText.IO.Font.Constants.StandardFonts.HELVETICA_BOLD);
-
-                    document.SetFont(font);
-
-                    // Create table
-                    iText.Layout.Element.Table table = new iText.Layout.Element.Table(UnitValue.CreatePercentArray(dataTable.Columns.Count)).UseAllAvailableWidth();
-
-                    // Add table headers
-                    foreach (DataColumn column in dataTable.Columns)
-                    {
-                        table.AddHeaderCell(new Cell().Add(new Paragraph(column.ColumnName).SetFont(boldFont)));
-                    }
-
-                    // Add table rows
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        foreach (DataColumn column in dataTable.Columns)
-                        {
-                            string cellValue = row[column] != DBNull.Value ? row[column].ToString() : string.Empty;
-                            table.AddCell(new Cell().Add(new Paragraph(cellValue).SetFont(font)));
-                        }
-                    }
-
-                    // Add table to document
-                    document.Add(table);
-                    document.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"An error occurred while exporting to PDF: {ex.Message}");
+                Console.WriteLine($"Inner Exception: {ex.InnerException.Message}");
             }
         }
 

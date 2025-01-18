@@ -518,7 +518,9 @@ namespace hotel
 
                 // Ouvrir le formulaire de paiement et lui passer les paramètres nécessaires
                 PaymentForm paymentForm = new PaymentForm(reservationId, dateIn, dateOut, pricePerNight);
+                getReservTable();
                 paymentForm.Show();
+                getReservTable();
             }
             catch (Exception ex)
             {

@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PdfForm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label_exit = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button_dashbord = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.button_logout = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button_dashbord = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -55,29 +55,6 @@
             this.panel1.Size = new System.Drawing.Size(830, 121);
             this.panel1.TabIndex = 0;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Snap ITC", 28F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(43, 20);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(451, 73);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Sunset Hotel";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Monotype Corsiva", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(582, 85);
-            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(191, 39);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "Manage Excel";
-            // 
             // label_exit
             // 
             this.label_exit.AutoSize = true;
@@ -89,6 +66,29 @@
             this.label_exit.Text = "X";
             this.label_exit.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.label_exit.Click += new System.EventHandler(this.label_exit_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Monotype Corsiva", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(582, 85);
+            this.label8.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(167, 39);
+            this.label8.TabIndex = 19;
+            this.label8.Text = "Manage Pdf";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Snap ITC", 28F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(43, 20);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(451, 73);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Sunset Hotel";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // dataGridView1
             // 
@@ -112,21 +112,39 @@
             this.panel2.Size = new System.Drawing.Size(830, 133);
             this.panel2.TabIndex = 2;
             // 
-            // button1
+            // button_logout
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.Info;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button1.Font = new System.Drawing.Font("Showcard Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(632, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(198, 133);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Exporter";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_logout.BackColor = System.Drawing.SystemColors.InfoText;
+            this.button_logout.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button_logout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button_logout.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_logout.ForeColor = System.Drawing.SystemColors.Info;
+            this.button_logout.Image = ((System.Drawing.Image)(resources.GetObject("button_logout.Image")));
+            this.button_logout.Location = new System.Drawing.Point(0, 0);
+            this.button_logout.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
+            this.button_logout.Name = "button_logout";
+            this.button_logout.Size = new System.Drawing.Size(200, 133);
+            this.button_logout.TabIndex = 12;
+            this.button_logout.Text = "logout";
+            this.button_logout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button_logout.UseVisualStyleBackColor = false;
+            this.button_logout.Click += new System.EventHandler(this.button_logout_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.Info;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button2.Font = new System.Drawing.Font("Showcard Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(206, 0);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(198, 133);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "PDF";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button_dashbord
             // 
@@ -146,39 +164,21 @@
             this.button_dashbord.UseVisualStyleBackColor = false;
             this.button_dashbord.Click += new System.EventHandler(this.button_dashbord_Click);
             // 
-            // button2
+            // button1
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.Info;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button2.Font = new System.Drawing.Font("Showcard Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(206, 0);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(198, 133);
-            this.button2.TabIndex = 11;
-            this.button2.Text = "PDF";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button_logout
-            // 
-            this.button_logout.BackColor = System.Drawing.SystemColors.InfoText;
-            this.button_logout.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button_logout.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button_logout.Font = new System.Drawing.Font("Showcard Gothic", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_logout.ForeColor = System.Drawing.SystemColors.Info;
-            this.button_logout.Image = ((System.Drawing.Image)(resources.GetObject("button_logout.Image")));
-            this.button_logout.Location = new System.Drawing.Point(0, 0);
-            this.button_logout.Margin = new System.Windows.Forms.Padding(2, 4, 2, 4);
-            this.button_logout.Name = "button_logout";
-            this.button_logout.Size = new System.Drawing.Size(200, 133);
-            this.button_logout.TabIndex = 12;
-            this.button_logout.Text = "logout";
-            this.button_logout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button_logout.UseVisualStyleBackColor = false;
-            this.button_logout.Click += new System.EventHandler(this.button_logout_Click);
+            this.button1.BackColor = System.Drawing.SystemColors.Info;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.button1.Font = new System.Drawing.Font("Showcard Gothic", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(632, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(198, 133);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Exporter";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // PdfForm
             // 
