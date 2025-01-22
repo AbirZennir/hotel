@@ -118,7 +118,6 @@ namespace hotel
         {
             try
             {
-                // Validation des champs obligatoires
                 if (string.IsNullOrEmpty(textBox_guestId.Text))
                 {
                     MessageBox.Show("L'ID du client est obligatoire",
@@ -140,14 +139,12 @@ namespace hotel
                     return;
                 }
 
-                // Récupération des données
                 string clientId = textBox_guestId.Text;
                 int roomId = Convert.ToInt32(comboBox_roomId.SelectedValue);
                 DateTime dIn = dateTimePicker_dateIn.Value;
                 DateTime dOut = dateTimePicker_dateOut.Value;
                 int roomTypeId = Convert.ToInt32(comboBox_roomType.SelectedValue);
 
-                // Validation des dates
                 if (dIn < DateTime.Today)
                 {
                     MessageBox.Show("La date d'arrivée doit être aujourd'hui ou après",
@@ -162,30 +159,24 @@ namespace hotel
                     return;
                 }
 
-                // Calcul du nombre de nuits
                 int numberOfNights = (dOut - dIn).Days;
 
-                // Récupération du prix par nuit
                 decimal pricePerNight = GetPricePerNight(roomTypeId);
 
-                // Calcul du montant total
                 decimal totalAmount = numberOfNights * pricePerNight;
 
-                // Demander confirmation
                 if (MessageBox.Show($"Voulez-vous confirmer cette réservation ?\n\nMontant total : {totalAmount:C}",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    // Ajouter la réservation
+                    
                     if (reservation.addReserv(clientId, roomId, dIn, dOut, totalAmount, roomTypeId) &&
                         reservation.setReservRoom(roomId, "Busy"))
                     {
                         MessageBox.Show("Réservation ajoutée avec succès",
                             "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        // Rafraîchir la table des réservations
                         getReservTable();
 
-                        // Réinitialiser les champs du formulaire
                         ClearFields();
                     }
                     else
@@ -239,7 +230,6 @@ namespace hotel
         {
             try
             {
-                // Vérification de la sélection
                 if (dataGridView_reserv.CurrentRow == null)
                 {
                     MessageBox.Show("Veuillez sélectionner une réservation à modifier",
@@ -247,7 +237,7 @@ namespace hotel
                     return;
                 }
 
-                // Validation des champs
+                
                 if (string.IsNullOrEmpty(textBox_guestId.Text))
                 {
                     MessageBox.Show("L'ID du client est obligatoire",
@@ -268,7 +258,7 @@ namespace hotel
                 DateTime dIn = dateTimePicker_dateIn.Value;
                 DateTime dOut = dateTimePicker_dateOut.Value;
 
-                // Validation des dates
+                
                 if (dIn < DateTime.Today)
                 {
                     MessageBox.Show("La date d'arrivée doit être aujourd'hui ou après",
@@ -283,8 +273,7 @@ namespace hotel
                     return;
                 }
 
-                // Vérifier le statut de la chambre avant de la mettre à jour
-                string currentRoomStatus = reservation.getRoomStatus(roomId);  // Ajouter cette méthode dans la classe Reservation
+                string currentRoomStatus = reservation.getRoomStatus(roomId);  
                 if (currentRoomStatus == "Busy" && dIn != Convert.ToDateTime(dataGridView_reserv.CurrentRow.Cells["CheckInDate"].Value))
                 {
                     MessageBox.Show("La chambre est déjà occupée à cette date.",
@@ -292,18 +281,14 @@ namespace hotel
                     return;
                 }
 
-                // Demander confirmation
                 if (MessageBox.Show("Voulez-vous confirmer la modification de cette réservation ?",
                     "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    // Modification de la réservation
                     bool isUpdated = reservation.editReserv(reservationId, clientId, roomId, dIn, dOut);
 
                     if (isUpdated)
                     {
-                        // Mettre à jour le statut de la chambre (par exemple, "Busy" si la chambre est réservée)
-                        bool isRoomUpdated = reservation.setReservRoom(roomId, "Free"); // mettre à jour le statut de la chambre
-                        if (isRoomUpdated)
+                        bool isRoomUpdated = reservation.setReservRoom(roomId, "Free");                        if (isRoomUpdated)
                         {
                             MessageBox.Show("Réservation modifiée et statut de la chambre mis à jour avec succès",
                                 "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);

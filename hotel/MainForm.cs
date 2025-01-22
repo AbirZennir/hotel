@@ -13,9 +13,9 @@ namespace hotel
 {
     public partial class MainForm : Form
     {
-        SqlConnection con = new SqlConnection("Data Source=DESKTOP-U5T5LIJ\\SQLEXPRESS;" +  // Utilisation de l'instance de SQL Server
-        "Initial Catalog=HotelManagement;" +          // Nom de la base de données
-        "Integrated Security=True;" +                  // Utilisation de l'authentification Windows
+        SqlConnection con = new SqlConnection("Data Source=DESKTOP-U5T5LIJ\\SQLEXPRESS;" +  
+        "Initial Catalog=HotelManagement;" +          
+        "Integrated Security=True;" +                  
         "Encrypt=False;");
 
         public MainForm()

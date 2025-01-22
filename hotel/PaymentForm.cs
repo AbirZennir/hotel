@@ -32,14 +32,12 @@ namespace hotel
 
         private void CalculateAndDisplayTotalAmount()
         {
-            // Calculer la durée du séjour
+
             int numberOfNights = (dateOut.Date - dateIn.Date).Days;
 
-            // Calculer le montant total (nombre de nuits * prix par nuit)
             decimal totalAmount = numberOfNights * pricePerNight;
 
 
-            // Afficher le montant total sur le formulaire
             montant.Text = $"Montant total : {totalAmount:C}";
         }
 
@@ -69,7 +67,7 @@ namespace hotel
         {
             string query = "UPDATE Reservations SET TotalAmount = @TotalAmount WHERE ReservationId = @ReservationId";
 
-            // Calculer le montant total
+
             decimal totalAmount = (dateOut.Date - dateIn.Date).Days * pricePerNight;
             DBConnect connect = new DBConnect();
 
@@ -91,36 +89,34 @@ namespace hotel
         {
             try
             {
-                // Calculer le montant total
                 decimal totalAmount = (dateOut.Date - dateIn.Date).Days * pricePerNight;
 
-                // Requête SQL pour insérer un paiement
+
                 string query = "INSERT INTO Payments (ReservationId, PaymentDate, Amount, PaymentMethod) " +
                                "VALUES (@ReservationId, @PaymentDate, @TotalAmount, @PaymentMethod)";
 
-                // Connexion à la base de données
+
                 DBConnect connect = new DBConnect();
 
                 using (SqlCommand command = new SqlCommand(query, connect.GetConnection()))
                 {
-                    // Ajouter les paramètres à la requête SQL
+
                     command.Parameters.AddWithValue("@ReservationId", reservationId);
                     command.Parameters.AddWithValue("@TotalAmount", totalAmount);
-                    command.Parameters.AddWithValue("@PaymentDate", DateTime.Now);  // Date du paiement
-                    command.Parameters.AddWithValue("@PaymentMethod", comboBox1.SelectedItem.ToString());  // Méthode de paiement sélectionnée
+                    command.Parameters.AddWithValue("@PaymentDate", DateTime.Now);  
+                    command.Parameters.AddWithValue("@PaymentMethod", comboBox1.SelectedItem.ToString());  
 
-                    // Ouvrir la connexion et exécuter la requête
+
                     connect.OpenCon();
                     command.ExecuteNonQuery();
                     connect.CloseCon();
 
-                    // Retourner vrai si l'insertion a réussi
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                // En cas d'erreur, afficher un message d'erreur et retourner faux
+
                 MessageBox.Show($"Erreur lors de l'enregistrement du paiement : {ex.Message}",
                                 "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -133,7 +129,7 @@ namespace hotel
         {
             try
             {
-                // Appeler la méthode pour enregistrer le montant dans la table Reservations
+
                 if (SaveTotalAmountToReservation() == true)
                 {
                     if (SavePay() == true)
@@ -170,7 +166,7 @@ namespace hotel
         {
             try
             {
-                // Vérifier si la méthode de paiement a été sélectionnée
+
                 if (comboBox1.SelectedIndex == -1)
                 {
                     MessageBox.Show("Veuillez sélectionner une méthode de paiement.",
@@ -178,28 +174,23 @@ namespace hotel
                     return;
                 }
 
-                // Calculer le montant total (au cas où il y a un changement dans les dates)
+
                 decimal totalAmount = (dateOut.Date - dateIn.Date).Days * pricePerNight;
 
-                // Requête SQL pour mettre à jour le montant et la méthode de paiement
                 string query = "UPDATE Payments SET Amount = @TotalAmount, PaymentMethod = @PaymentMethod WHERE ReservationId = @ReservationId";
 
-                // Connexion à la base de données
                 DBConnect connect = new DBConnect();
 
                 using (SqlCommand command = new SqlCommand(query, connect.GetConnection()))
                 {
-                    // Ajouter les paramètres à la requête SQL
                     command.Parameters.AddWithValue("@TotalAmount", totalAmount);
                     command.Parameters.AddWithValue("@PaymentMethod", comboBox1.SelectedItem.ToString());
                     command.Parameters.AddWithValue("@ReservationId", reservationId);
 
-                    // Ouvrir la connexion et exécuter la requête
                     connect.OpenCon();
                     command.ExecuteNonQuery();
                     connect.CloseCon();
 
-                    // Informer l'utilisateur que la mise à jour a réussi
                     MessageBox.Show("Paiement mis à jour avec succès.",
                                     "Succès", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -208,7 +199,6 @@ namespace hotel
             }
             catch (Exception ex)
             {
-                // En cas d'erreur, afficher un message d'erreur
                 MessageBox.Show($"Erreur lors de la mise à jour du paiement : {ex.Message}",
                                 "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

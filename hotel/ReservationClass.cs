@@ -5,12 +5,10 @@ using System.Windows.Forms;
 
 namespace hotel
 {
-    // This class handles reservation functionality
     class ReservationClass
     {
         DBConnect connect = new DBConnect();
 
-        // Fetch rooms by type that are available
         public DataTable roomByType(int type)
         {
             string selectQuery = "SELECT * FROM [Rooms] WHERE [RoomTypeId]=@type AND [status]='Free'";
@@ -22,7 +20,6 @@ namespace hotel
             return table;
         }
 
-        // Get room type by room number
         public int typeByRoomNo(int roomId)
         {
             string selectQuery = "SELECT [RoomTypeId] FROM [Rooms] WHERE [RoomId]=@roomId";
@@ -34,7 +31,6 @@ namespace hotel
             return Convert.ToInt32(table.Rows[0]["RoomTypeId"]);
         }
 
-        // Fetch all reservations
         public DataTable getReserv()
         {
             string selectQuery = "SELECT * FROM [Reservations]";
@@ -45,7 +41,6 @@ namespace hotel
             return table;
         }
 
-        // Change room status when reserved
         public bool setReservRoom(int roomId, string status)
         {
             try
@@ -70,7 +65,6 @@ namespace hotel
             }
         }
 
-        // Add a reservation
         public bool addReserv(string clientId, int roomId, DateTime checkinDate, DateTime checkoutDate, decimal totalAmount, int roomTypeId)
         {
             string insertQuery = @"INSERT INTO Reservations 
@@ -102,7 +96,6 @@ namespace hotel
             }
         }
 
-        // Delete a reservation
         public bool removeReserv(int reservationId)
         {
             string deleteQuery = "DELETE FROM [Reservations] WHERE [ReservationId]=@reservId";
@@ -115,7 +108,6 @@ namespace hotel
             return success;
         }
 
-        // Edit a reservation
         public bool editReserv(int reservationId, string clientId, int roomId, DateTime checkinDate, DateTime checkoutDate)
         {
             string updateQuery = @"UPDATE [Reservations] 
@@ -139,7 +131,6 @@ namespace hotel
             return success;
         }
 
-        // Fetch reservations by client ID
         public DataTable getReservationsByClient(string clientId)
         {
             string selectQuery = "SELECT * FROM [Reservations] WHERE [ClientId]=@clientId";
@@ -151,21 +142,19 @@ namespace hotel
             return table;
         }
 
-        // Fetch room status
         public string getRoomStatus(int roomId)
         {
             string query = "SELECT status FROM Rooms WHERE RoomId = @RoomId";
-            
+
             using (SqlCommand command = new SqlCommand(query, connect.GetConnection()))
             {
                 command.Parameters.AddWithValue("@RoomId", roomId);
                 connect.OpenCon();
                 object result = command.ExecuteScalar();
-                return result != null ? result.ToString() : "Free";  // Retourne "Libre" si aucun statut n'est trouvé
+                return result != null ? result.ToString() : "Free";
             }
         }
 
-        // Handle exceptions and log errors
         private void HandleException(Exception ex)
         {
             MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

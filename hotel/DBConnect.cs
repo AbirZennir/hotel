@@ -5,10 +5,10 @@ using System;
 public class DBConnect
 {
     private readonly SqlConnection connection = new SqlConnection(
-        "Data Source=DESKTOP-U5T5LIJ\\SQLEXPRESS;" +  // Utilisation de l'instance de SQL Server
-        "Initial Catalog=HotelManagement;" +          // Nom de la base de données
-        "Integrated Security=True;" +                  // Utilisation de l'authentification Windows
-        "Encrypt=False;"                               // Désactive le cryptage (peut être ajusté en fonction de votre configuration)
+        "Data Source=DESKTOP-U5T5LIJ\\SQLEXPRESS;" +  
+        "Initial Catalog=HotelManagement;" +          
+        "Integrated Security=True;" +                  
+        "Encrypt=False;"                               
     );
 
     public SqlConnection GetConnection()

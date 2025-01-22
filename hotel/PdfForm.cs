@@ -81,24 +81,19 @@ namespace hotel
                                     return;
                                 }
 
-                                // Créer un document PDF
                                 using (FileStream stream = new FileStream(file.FileName, FileMode.Create))
                                 {
-                                    // Utiliser iTextSharp
                                     iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document();
                                     iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, stream);
                                     pdfDoc.Open();
 
-                                    // Ajouter du contenu au PDF
                                     PdfPTable pdfTable = new PdfPTable(dataTable.Columns.Count);
 
-                                    // Ajouter les en-têtes
                                     foreach (DataColumn column in dataTable.Columns)
                                     {
                                         pdfTable.AddCell(new Phrase(column.ColumnName));
                                     }
 
-                                    // Ajouter les données
                                     foreach (DataRow row in dataTable.Rows)
                                     {
                                         foreach (var item in row.ItemArray)
@@ -157,7 +152,6 @@ namespace hotel
 
         private void LogError(Exception ex)
         {
-            // Log error to the console for debugging
             Console.WriteLine($"[{DateTime.Now}] Error: {ex.Message}");
             if (ex.InnerException != null)
             {
@@ -187,6 +181,11 @@ namespace hotel
         private void label_exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

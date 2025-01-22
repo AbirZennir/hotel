@@ -15,7 +15,7 @@ namespace hotel
         DBConnect connect = new DBConnect();
 
 
-        // Calculate the total amount for a reservation
+
         private decimal GetTotalAmount(int roomId, DateTime checkInDate, DateTime checkOutDate)
         {
             try
@@ -39,12 +39,12 @@ namespace hotel
             }
             catch (Exception ex)
             {
-               // HandleException(ex);
+               
                 return 0;
             }
         }
 
-        // Get the price per night for a given room
+      
         private decimal GetPricePerNight(int roomId)
         {
             try
@@ -99,7 +99,7 @@ namespace hotel
         {
             try
             {
-                // SQL query pour mettre à jour le paiement
+               
                 string updateQuery = @"UPDATE Payments 
                                SET Amount = @Amount, Status = @Status
                                WHERE ReservationId = @ReservationId";
@@ -119,7 +119,7 @@ namespace hotel
             }
             catch (Exception ex)
             {
-                // Log des erreurs si nécessaire
+               
                 //File.AppendAllText("error_log.txt", $"{DateTime.Now}: {ex.Message}\n{ex.StackTrace}\n");
                 MessageBox.Show("Erreur lors de la mise à jour du paiement. Veuillez contacter l'administrateur.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
